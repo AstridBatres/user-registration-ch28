@@ -13,6 +13,53 @@ function User(first,last,email,password,gender,age,adress,phone,payment){
         this.payment=payment;
 }
 
+function isValid(User){
+        let valid=true;
+        $("input").removeClass("input-error");
+        if (User.email.length==0){
+        
+        valid=false;
+        console.error("Add an email");
+        $("#txtemail").addClass("input-error");
+        }
+
+        if (User.password.length==0){
+                valid=false;
+                console.error("Add a password")
+                $("#txtpassword").addClass("input-error");
+        }
+
+        if(User.first.length==0){
+                valid=false;
+                console.error("Add a first name")
+                $("#txtfirst").addClass("input-error");
+        }
+        
+        if(User.last.length==0){
+                valid=false;
+                console.error("Add a last name")
+                $("#txtlast").addClass("input-error");
+        }
+        if(User.gender.length==0){
+                valid=false;
+                console.error
+                $("#txtgender").addClass("input-error");
+        }
+        return valid;
+
+}
+
+function validatePass(){
+        let txtpass=$("#txtpassword");
+        let password=txtpass.val();
+        //is the password less than 6?
+        if(password.length<6){
+                txtpass.css("background", "red"); //jquery to change the css
+        }else{
+                txtpass.css("background", "green");
+        }
+        }
+
 function register(){
         let inputfirst= $("#txtfirst").val();//getting value
         let inputlast= $("#txtlast").val();
@@ -27,14 +74,17 @@ function register(){
         //console.log(inputfirst,inputlast,inputemail,inputpassword,inputgender,inputage,inputadress,inputphone,inputpayment);
 
         let newUser = new User(inputfirst,inputlast,inputemail,inputpassword,inputgender, inputage,inputadress,inputphone,inputpayment);
-        console.log(newUser)
+        if(isValid(newUser)){
+        saveUser (newUser);
+        $('input').val("");// clears all the inputs
+        //function on store manager
+}
 }
 
 function init(){
-    console.log("Init function");
-
-    //create two users and display on console
-    let user1= new User("Astrid", "Guerrero",)
+    console.log("Register");
+//hook events
+   $("#txtpassword").change(validatePass);
 }
 
 window.onload=init;
