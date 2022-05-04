@@ -24,7 +24,7 @@ function login(){
 }
 
 function init(){
-  $("#loginBtn").click(login);
+    $("#loginBtn").click(login);
 }
 
 window.onload=init;
