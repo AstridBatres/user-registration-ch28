@@ -55,10 +55,20 @@ function validatePass(){
         //is the password less than 6?
         if(password.length<6){
                 txtpass.css("background", "red"); //jquery to change the css
+                displayErrror("The password is too short :(");
         }else{
                 txtpass.css("background", "green");
+                hideError();
         }
+
         }
+
+function displayErrror(msg){
+        $("#alertError").removeClass("hide").text(msg);
+}
+function hideError(){
+        $("alertError").addClass("hide");
+}
 
 function register(){
         let inputfirst= $("#txtfirst").val();//getting value
@@ -78,6 +88,7 @@ function register(){
         saveUser (newUser);
         $('input').val("");// clears all the inputs
         //function on store manager
+        //add display error
 }
 }
 
